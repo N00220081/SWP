@@ -62,10 +62,24 @@ class MemberController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Member $member)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $member->update([
+        'profile_pic' => $request->profile_pic,
+        'name' => $request->name,
+        'pressure' => $request->pressure,
+        'temperature' => $request->temperature,
+        'timer' => $request->timer,
+        ]);
+
+        return to_route('members.show', $member)->with('success', 'Member successfully Updated!');
+
     }
+    
 
     /**
      * Remove the specified resource from storage.

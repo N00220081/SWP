@@ -28,6 +28,8 @@ Route::resource('/member', MemberController::class)->middleware(['auth']);
 Route::get('/member/{member}', [MemberController::class, 'show'])->name('members.show');
 Route::post('/member', [MemberController::class, 'store'])->name('members.store');
 Route::get('/member/create', [MemberController::class, 'create'])->name('members.create');
+Route::get('/member/{member}/edit', [MemberController::class, 'edit'])->name('members.edit');
+Route::put('/member/{member}', [MemberController::class, 'update'])->name('members.update');
 
 // Usage
 Route::resource('/usage', UsageController::class)->middleware(['auth']);
