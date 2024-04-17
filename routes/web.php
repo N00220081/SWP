@@ -26,18 +26,15 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 // Member
 Route::resource('/member', MemberController::class)->middleware(['auth']);
 Route::get('/member/{member}', [MemberController::class, 'show'])->name('members.show');
-Route::post('/member', [MemberController::class, 'store'])->name('members.store');
 Route::get('/member/create', [MemberController::class, 'create'])->name('members.create');
+Route::post('/member', [MemberController::class, 'store'])->name('members.store');
 Route::get('/member/{member}/edit', [MemberController::class, 'edit'])->name('members.edit');
 Route::put('/member/{member}', [MemberController::class, 'update'])->name('members.update');
 
 // Usage
 Route::resource('/usage', UsageController::class)->middleware(['auth']);
-
-
-
-
-
+Route::get('/usage', [UsageController::class, 'index'])->name('usages.index');
+Route::get('/usage/{usage}', [UsageController::class, 'show'])->name('usages.show');
 
 
 require __DIR__.'/auth.php';

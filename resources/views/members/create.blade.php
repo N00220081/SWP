@@ -54,6 +54,7 @@
                     <x-text-input id="timer" type="time" name="timer" placeholder="HH:MM" required />
                 </div>
 
+                <x-alert-success> {{session('success')}}</x-alert-success>
                 <x-primary-button type="submit">
                     Create
                 </x-primary-button>

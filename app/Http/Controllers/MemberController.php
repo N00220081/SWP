@@ -31,13 +31,15 @@ class MemberController extends Controller
         ]);
 
        Member::created([
-        'profile_pic' => "https://picsum.photos/id/118/500/500",
         'name' => $request->name,
+        'profile_pic' => "https://picsum.photos/id/118/500/500",
         'pressure' => "Select preferred Pressure",
         'temperature' => "Select preferred Temperature",
+        'timer' => 'Select a Timer',
         'created_at' => now(),
         'updated_at' => now(),
        ]);
+
        return to_route('member.index');
     
     }
@@ -83,8 +85,9 @@ class MemberController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Member $member)
     {
-        //
+        $member->delete();
+        return to_route('member.index')->with('success', 'Member removed Successfully');
     }
 }
