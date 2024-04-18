@@ -4,27 +4,30 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class AddMemberIdToUsagesTable extends Migration
 {
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::table('usages', function (Blueprint $table) {
+    public function up()
+{
+    Schema::table('usages', function (Blueprint $table) {
+        if (!Schema::hasColumn('usages', 'member_id')) {
             $table->unsignedBigInteger('member_id');
-            $table->foreign('member_id')->references('id')->on('members')->onUpdate('cascade')->onDelete('cascade');
-        });
-    }
+            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+        }
+    });
+}
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::table('usages', function (Blueprint $table) {
             $table->dropForeign(['member_id']);
             $table->dropColumn('member_id');
         });
     }
-};
+}
+

@@ -25,23 +25,30 @@ class MemberController extends Controller
  
     public function store(Request $request)
     {
-     
-        $request->validate([
+        // Validate incoming form data
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            'pressure' => 'required|string|max:255', // Adjust max length as per your database schema
+            'temperature' => 'required|string|max:255', // Adjust max length as per your database schema
+            'timer' => 'required|string|max:255', // Adjust max length as per your database schema
         ]);
-
-       Member::created([
-        'name' => $request->name,
-        'profile_pic' => "https://picsum.photos/id/118/500/500",
-        'pressure' => "Select preferred Pressure",
-        'temperature' => "Select preferred Temperature",
-        'timer' => 'Select a Timer',
-        'created_at' => now(),
-        'updated_at' => now(),
-       ]);
-
-       return to_route('member.index');
     
+        try {
+            // Create a new member instance with mass assignment
+            $member = Member::create([
+                'name' => $validatedData['name'],
+                'profile_pic' => "https://picsum.photos/id/118/500/500",
+                'pressure' => $validatedData['pressure'],
+                'temperature' => $validatedData['temperature'],
+                'timer' => $validatedData['timer'],
+            ]);
+    
+            // Redirect to the member index page upon successful creation
+            return redirect()->route('member.index')->with('success', 'Member created successfully!');
+        } catch (\Exception $e) {
+            // Handle any database insertion errors
+            return back()->withInput()->withErrors(['error' => 'Failed to create member. Please try again.']);
+        }
     }
 
 

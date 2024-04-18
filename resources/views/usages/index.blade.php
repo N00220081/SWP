@@ -35,13 +35,18 @@
                                         {{ $usage->member->name }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap"
-                                        @if ($usage->length < 5)
-                                            style="background-color: green;"
-                                        @elseif ($usage->length < 20)
-                                            style="background-color: #FFD700;"
-                                        @else
-                                            style="background-color: red;"
-                                        @endif
+                                        style="
+                                            @php
+                                                $lengthInMinutes = (int)substr($usage->length, 0, 2) * 60 + (int)substr($usage->length, 3, 2);
+                                            @endphp
+                                            @if ($lengthInMinutes <= 5)
+                                                background-color: green;
+                                            @elseif ($lengthInMinutes <= 20)
+                                                background-color: #FFD700;
+                                            @else
+                                                background-color: red;
+                                            @endif
+                                        "
                                     >
                                         {{ $usage->length }}
                                     </td>
