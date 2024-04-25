@@ -19,6 +19,10 @@
                         {{ __('Usage') }}
                     </x-nav-link>
                     
+                    <x-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard.index')">
+                        {{ __('Leaderboard') }}
+                    </x-nav-link>
+                    
                 </div>
             </div>
 

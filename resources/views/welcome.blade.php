@@ -20,7 +20,7 @@
     @if (Route::has('login'))
         <div class="fixed top-0 right-0 p-6 text-right z-10">
             @auth
-                <a href="{{ url('member') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-none focus:ring focus:ring-red-500 rounded-md">Continue</a>
+                <a href="{{ url('member') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-none focus:ring focus:ring-red-500 rounded-md">View my Shower Habits</a>
             @else
                 <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-none focus:ring focus:ring-red-500 rounded-md">Log in</a>
 
@@ -28,12 +28,11 @@
                     <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-none focus:ring focus:ring-red-500 rounded-md">Register</a>
                 @endif
             @endauth
+            
         </div>
 
         
     @endif
-
-   
 
 </div>
 </body>

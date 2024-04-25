@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LeaderboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsageController;
 use App\Http\Controllers\MemberController;
@@ -35,6 +36,9 @@ Route::put('/member/{member}', [MemberController::class, 'update'])->name('membe
 Route::resource('/usage', UsageController::class)->middleware(['auth']);
 Route::get('/usage', [UsageController::class, 'index'])->name('usages.index');
 Route::get('/usage/{usage}', [UsageController::class, 'show'])->name('usages.show');
+
+// Leaderboard
+Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard');
 
 
 require __DIR__.'/auth.php';
