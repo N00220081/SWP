@@ -24,7 +24,7 @@ class UsageController extends Controller
         }
     
         // Apply sorting logic for length, date, or amount (example: descending order)
-        $sortColumn = $request->input('sort', 'date');
+        $sortColumn = $request->input('sort', 'name');
         $sortDirection = $request->input('direction', 'desc');
     
         if ($sortColumn === 'length' || $sortColumn === 'date' || $sortColumn === 'amount') {
