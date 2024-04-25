@@ -31,7 +31,7 @@ class UsageFactory extends Factory
 
         return [
             'member_id' => $memberId,
-            'date' => $this->faker->date(),
+            'date' => $this->faker->dateTimeBetween('2023-01-01', now()->format('Y-m-d')),
             'length' => sprintf('00:%02d:%02d', $minutes, $seconds), // Format minutes and seconds with leading zeros
             'amount' => $this->faker->randomFloat(2, 1, 100),
         ];
