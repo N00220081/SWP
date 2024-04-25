@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <strong class="block mb-1">Latest Timer Set:</strong>
+                            <strong class="block mb-1">Latest Shower Lenth:</strong>
                             <span>{{ $member->timer }}</span>
                         </div>
                     </div>

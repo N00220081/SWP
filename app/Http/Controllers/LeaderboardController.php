@@ -5,17 +5,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
-use App\Models\Usage;
 use Illuminate\Http\Request;
 
 class LeaderboardController extends Controller
 {
     public function index()
     {
-        // Fetch all members
-        $members = Member::all();
+        // Retrieve all members with their related usages
+        $members = Member::with('usages')->get();
 
-        // Return the leaderboard view with members data
-        return view('leaderboard', compact('members'));
+        // Sort members by total usage amount in ascending order
+        $sortedMembers = $members->sortBy(function ($member) {
+            return $member->usages->sum('amount');
+        });
+
+        return view('leaderboard', [
+            'members' => $sortedMembers,
+        ]);
     }
 }
