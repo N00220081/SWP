@@ -29,11 +29,14 @@ class UsageFactory extends Factory
         $minutes = $this->faker->numberBetween(0, 59);
         $seconds = $this->faker->numberBetween(0, 59);
 
+        // takes into acount that 9 litres of water is used on average per minute
+        $waterUsage = $minutes * 9;
+
         return [
             'member_id' => $memberId,
             'date' => $this->faker->dateTimeBetween('2023-01-01', now()->format('Y-m-d')),
             'length' => sprintf('00:%02d:%02d', $minutes, $seconds), // Format minutes and seconds with leading zeros
-            'amount' => $this->faker->randomFloat(2, 1, 100),
+            'amount' => $waterUsage,
         ];
     }
 }
